@@ -8,13 +8,12 @@ import (
 )
 
 func main() {
-	ctx, cancel := context.WithTimeout(context.Background(), 50*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Millisecond)
 	defer cancel()
 
 	go httpJson(ctx)
 	for {
 		fmt.Println("in for loop")
-		time.Sleep(1 * time.Second)
 		select {
 		case <-ctx.Done():
 			fmt.Println("program get intreeputed due to context")
